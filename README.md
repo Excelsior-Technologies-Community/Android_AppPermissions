@@ -26,13 +26,15 @@ Simplify runtime permission handling using a clean **DSL-style API** with full s
 
 ---
 
-## 📦 Installation
+## Installation
 
-### Step 1: Add JitPack (if publishing)
+### Step 1: Add JitPack
 
 ```gradle
-allprojects {
+dependencyResolutionManagement {
     repositories {
+        google()
+        mavenCentral()
         maven { url 'https://jitpack.io' }
     }
 }
@@ -41,7 +43,9 @@ allprojects {
 ### Step 2: Add Dependency
 
 ```gradle
-implementation 'com.github.yourusername:PermissionManager:1.0.0'
+dependencies {
+	        implementation 'com.github.Excelsior-Technologies-Community:Android_AppPermissions:1.0.0'
+	}
 ```
 
 ---
@@ -180,7 +184,3 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 ---
-
-## ⭐ Support
-
-If you like this library, please ⭐ the repository and share it with others!
