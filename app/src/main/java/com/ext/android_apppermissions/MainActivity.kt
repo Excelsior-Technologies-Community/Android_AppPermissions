@@ -24,31 +24,21 @@ class MainActivity : AppCompatActivity(), PermissionCallback {
             insets
         }
 
-        PermissionManager.request(
-            activity = this,
-            permissions = arrayOf(
+        PermissionManager.with(this)
+            .permissions(
                 Manifest.permission.CAMERA,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-            ),
-            callback = this
-        )
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
-        if (requestCode == 1001) {
-            PermissionResultHandler.handleResult(
-                activity = this,
-                permissions = permissions,
-                grantResults = grantResults,
-                callback = this
+                Manifest.permission.READ_MEDIA_IMAGES
             )
-        }
+            .onGranted {
+                Toast.makeText(this, "Granted", Toast.LENGTH_SHORT).show()
+            }
+            .onDenied { denied ->
+                Toast.makeText(this, "Denied: $denied", Toast.LENGTH_SHORT).show()
+            }
+            .onPermanentlyDenied { permanent ->
+                Toast.makeText(this, "Permanent: $permanent", Toast.LENGTH_SHORT).show()
+            }
+            .request()
     }
 
     override fun onGranted() {
